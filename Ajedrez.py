@@ -1,10 +1,10 @@
 def partida_ajedrez(ajedrez):
     tablero_inicial = '♜\t♞\t♝\t♛\t♚\t♝\t♞\t♜\n♟\t♟\t♟\t♟\t♟\t♟\t♟\t♟\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\n♙\t♙\t♙\t♙\t♙\t♙\t♙\t♙\n♖\t♘\t♗\t♕\t♔\t♗\t♘\t♖'
-    tablero=[]
+    tablero =  []
     for i in tablero_inicial.split('\n'):
         tablero.append(i.split('\t'))
 
-    f = open("ajedrez", 'w')
+    f = open("ajedrez", "w")
     for i in partida_ajedrez:
         f.write('\t'.join(i) + '\n')
     f.close()
@@ -20,4 +20,9 @@ while True:
         columnainicial = int(input("Introduce la columna de la pieza a mover: "))
         filadestino = int(input("Introduce la fila de destino: "))
         columnadestino = int(input("Introduce la columna de destino: "))
+        tablero[filadestino-1][columnadestino-1] = tablero[filainicial-1][columnainicial-1]
+        tablero[filainicial-1][columnainicial-1] = " "
+        movimiento += 1
+        f = open("ajedrez", "a")
+        f.write('Movimiento' + str(movimiento) + '\n')
         
