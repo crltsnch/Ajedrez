@@ -9,24 +9,35 @@ def partida_ajedrez(nombrefichero):
         f.write('\t'.join(i) + '\n')
     f.close()
 
-movimiento = 0
+    movimiento = 0
 
-while True:
-    seguirjugando = input("Deseas hacer otro movimiento (si/no): ")
-    if seguirjugando == "no" :
-        break
-    else:
-        filainicial = int(input("Introduce la fila de la pieza a mover: "))
-        columnainicial = int(input("Introduce la columna de la pieza a mover: "))
-        filadestino = int(input("Introduce la fila de destino: "))
-        columnadestino = int(input("Introduce la columna de destino: "))
-        tablero[filadestino-1][columnadestino-1] = tablero[filainicial-1][columnainicial-1]
-        tablero[filainicial-1][columnainicial-1] = " "
-        movimiento += 1
-        f = open("nombrefichero", "a")
-        f.write("Movimiento" + str(movimiento) + '\n')
-        for i in tablero:
-            f.write('\t'.join(i) + '\n')
-        f.close()
-    return
+    while True:
+        seguirjugando = input("Deseas hacer otro movimiento (si/no): ")
+        if seguirjugando == "no" :
+            break
+        else:
+            filainicial = int(input("Introduce la fila de la pieza a mover: "))
+            columnainicial = int(input("Introduce la columna de la pieza a mover: "))
+            filadestino = int(input("Introduce la fila de destino: "))
+            columnadestino = int(input("Introduce la columna de destino: "))
+            tablero[filadestino-1][columnadestino-1] = tablero[filainicial-1][columnainicial-1]
+            tablero[filainicial-1][columnainicial-1] = " "
+            movimiento += 1
+            f = open("nombrefichero", "a")
+            f.write("Movimiento" + str(movimiento) + '\n')
+            for i in tablero:
+                f.write('\t'.join(i) + '\n')
+            f.close()
+    return(partida_ajedrez)
+
 partida_ajedrez("partida1.txt")
+
+
+def tablero(nombre_fichero, n):
+    f = open(nombre_fichero, 'r')
+    tableros = f.read().split('\n')
+    for i in tableros[n*9:n*9+8]:
+         print(i)
+    return
+
+tablero('partida1.txt', 2)
